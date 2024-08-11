@@ -64,9 +64,9 @@ The script will generate the following structure in the `outputs/` directory:
 
 ```
 outputs/
-└── HomeVideoSection/
-    ├── HomeVideoSection.module.css
-    └── HomeVideoSection.tsx
+└── HelloWorld/
+    ├── HelloWorld.module.css
+    └── HelloWorld.tsx
 ```
 
 ### 5. Integrate with Your Next.js Project
@@ -74,7 +74,7 @@ outputs/
 Move the generated component folder from `outputs/` to your Next.js project, typically under `components/pages`, and import it into your application.
 
 ```typescript
-import HomeVideoSection from './components/pages/home/HomeVideoSection';
+import HelloWorld from './components/HelloWorld';
 ```
 
 ## Example Output
@@ -84,9 +84,9 @@ Here’s an example of what the script-generated component might look like:
 **HomeVideoSection.tsx**
 ```tsx
 import React from 'react';
-import styles from './SimpleComponent.module.css';
+import styles from './HelloWorld.module.css';
 
-const SimpleComponent: React.FC = () => {
+const HelloWorld: React.FC = () => {
     return (
         <div className={styles.simple_component}>
             <img src="image.jpg" alt="Simple Image" className={styles.simple_component__img} />
@@ -95,13 +95,13 @@ const SimpleComponent: React.FC = () => {
     );
 };
 
-export default SimpleComponent;
+export default HelloWorld;
 ```
 
 **HomeVideoSection.module.css**
 ```css
-.home__videoBgSection { /* Your CSS here */ }
-.home__videoBgSection__picture { /* Your CSS here */ }
+.test__videoBgSection { /* Your CSS here */ }
+.test__videoBgSection__picture { /* Your CSS here */ }
 /* Additional styles */
 ```
 
