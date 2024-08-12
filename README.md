@@ -66,7 +66,7 @@ RCBuilder/
    With the virtual environment activated, run the conversion script to transform your static HTML and CSS into React components:
 
    ```
-   python convert.py
+   python3 convert.py
    ```
 
 ### 2. Enter the Component Name
