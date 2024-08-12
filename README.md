@@ -1,8 +1,9 @@
+
 # React Component Builder (RCBuilder)
 
 ## Overview
 
-The **React Component Builder (RCBuilder)** is a simple Bash script designed to convert your static HTML and CSS components into React (Next.js) components using TypeScript (`.tsx`). The script automates the process of creating a React component, converting HTML classes to `className`, and preparing CSS as a locally scoped CSS module.
+The **React Component Builder (RCBuilder)** is a Python-based tool designed to convert your static HTML and CSS components into React (Next.js) components using TypeScript (`.tsx`). The script automates the process of creating a React component, converting HTML classes to `className`, and preparing CSS as a locally scoped CSS module.
 
 ## Features
 
@@ -13,96 +14,82 @@ The **React Component Builder (RCBuilder)** is a simple Bash script designed to 
 
 ## Prerequisites
 
-- **Bash**: The script is written in Bash and should be run in a Unix-like environment (e.g., Linux, macOS).
+- **Python 3.10 or later**: Ensure you have Python installed on your system.
+- **Bash**: The installation and environment setup scripts are written in Bash and should be run in a Unix-like environment (e.g., Linux, macOS).
 - **Next.js**: The output components are intended for use in a Next.js project with TypeScript enabled.
 
 ## Project Structure
 
 ```
 RCBuilder/
-├── convert.sh
+├── convert.py
+├── env.sh
+├── install.sh
 ├── inputs/
 │   ├── input.html
 │   └── input.css
 └── outputs/
 ```
 
-- **`convert.sh`**: The main Bash script that performs the conversion.
+- **`install.sh`**: Bash script to install the necessary Python version and dependencies.
+- **`env.sh`**: Bash script to set up and activate the Python virtual environment.
+- **`convert.py`**: The main Python script that performs the conversion.
 - **`inputs/`**: Directory containing your static HTML and CSS files (`input.html` and `input.css`).
 - **`outputs/`**: Directory where the converted React components will be saved.
 
 ## How to Use
 
-### 1. Set Up Your Project
+### 1. Set Up Your Environment
 
-1. Clone or download the **RCBuilder** project.
-2. Place your static HTML and CSS files into the `inputs/` directory.
+1. **Run the Installation Script**:  
+   First, navigate to the `RCBuilder` directory and run the installation script to ensure Python and the necessary packages are installed:
 
-Example:
-```
-RCBuilder/
-├── convert.sh
-└── inputs/
-    ├── input.html
-    └── input.css
-```
+   ```bash
+   chmod 777 install.sh env.sh convert.sh
+    install.sh
+   ```
 
-### 2. Run the Script
+2. **Set Up the Virtual Environment**:  
+   Next, run the environment setup script to create and activate a Python virtual environment:
 
-Navigate to the `RCBuilder` directory and run the script using the following command:
-```bash
-bash convert.sh
-```
+   ```bash
+   env.sh
+   ```
 
-### 3. Enter the Component Name
+   The script will create a virtual environment in your home directory and activate it. To activate it manually in the future, use:
+
+   ```bash
+   source ~/my_venv/bin/activate
+   ```
+
+3. **Run the Conversion Script**:  
+   With the virtual environment activated, run the conversion script to transform your static HTML and CSS into React components:
+
+   ```
+   python convert.py
+   ```
+
+### 2. Enter the Component Name
 
 When prompted, enter the desired name for your React component (e.g., `HomeVideoSection`). The script will automatically create the component files in the `outputs/` directory.
 
-### 4. Output
+### 3. Output
 
 The script will generate the following structure in the `outputs/` directory:
 
 ```
 outputs/
-└── HelloWorld/
-    ├── HelloWorld.module.css
-    └── HelloWorld.tsx
+└── HomeVideoSection/
+    ├── HomeVideoSection.module.css
+    └── HomeVideoSection.tsx
 ```
 
-### 5. Integrate with Your Next.js Project
+### 4. Integrate with Your Next.js Project
 
 Move the generated component folder from `outputs/` to your Next.js project, typically under `components/pages`, and import it into your application.
 
 ```typescript
-import HelloWorld from './components/HelloWorld';
-```
-
-## Example Output
-
-Here’s an example of what the script-generated component might look like:
-
-**HomeVideoSection.tsx**
-```tsx
-import React from 'react';
-import styles from './HelloWorld.module.css';
-
-const HelloWorld: React.FC = () => {
-    return (
-        <div className={styles.simple_component}>
-            <img src="image.jpg" alt="Simple Image" className={styles.simple_component__img} />
-            <p className={styles.simple_component__text}>This is a simple component.</p>
-        </div>
-    );
-};
-
-export default HelloWorld;
-```
-
-**HomeVideoSection.module.css**
-```css
-.test__videoBgSection { /* Your CSS here */ }
-.test__videoBgSection__picture { /* Your CSS here */ }
-/* Additional styles */
+import HomeVideoSection from './components/pages/home/HomeVideoSection';
 ```
 
 ## License
