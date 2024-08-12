@@ -50,6 +50,10 @@ def convert_html_to_tsx(html_content, component_name):
     jsx_lines = jsx_content.split('\n')
     indented_jsx = '\n'.join(['        ' + line.strip() for line in jsx_lines if line.strip()])
 
+    # Wrap content in a single parent <React.Fragment> if necessary
+    if len(soup.contents) > 1:
+        indented_jsx = f"        <>\n{indented_jsx}\n        </>"
+
     # Create TSX content
     tsx_content = f"""import React from 'react';
 import {component_name}_styles from './{component_name}.module.css';
