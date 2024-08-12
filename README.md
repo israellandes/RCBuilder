@@ -46,7 +46,7 @@ RCBuilder/
 
    ```bash
    chmod 777 install.sh env.sh convert.sh
-    install.sh
+   install.sh
    ```
 
 2. **Set Up the Virtual Environment**:  
